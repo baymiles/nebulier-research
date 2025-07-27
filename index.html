@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nebulier Research</title>
+  <meta name="description" content="Nebulier Research - Independent Research Initiative" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <!-- Lucide Icon Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; line-height: 1.5; }
+
+    /* Header */
+    header { background-color: #000; color: #fff; position: sticky; top: 0; z-index: 1000; }
+    .container { max-width: 1024px; margin: 0 auto; padding: 0 1rem; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; height: 4rem; }
+    /* Adjusted Nebulier text size and weight */
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 700; }
+    /* Target the injected SVG for sizing */
+    .logo svg { width: 2.75rem !important; height: 2.75rem !important; }
+
+    .nav { display: none; }
+    .nav a, .nav button { color: #fff; text-decoration: none; margin-left: 2rem; font-weight: 700; font-family: inherit; font-size: 1rem; background: none; border: none; cursor: pointer; transition: color 0.2s; }
+    .nav a:hover, .nav button:hover { color: #d1d5db; }
+    .hamburger { display: block; background: none; border: none; cursor: pointer; }
+    .hamburger svg, .hamburger i { width: 1.5rem; height: 1.5rem; }
+    @media (min-width: 768px) {
+      .nav { display: flex; }
+      .hamburger { display: none; }
+    }
+
+    /* Mobile Menu */
+    .mobile-menu { display: none; background-color: #000; border-top: 1px solid #374151; }
+    .mobile-menu a, .mobile-menu button { display: block; padding: 0.75rem 1rem; color: #fff; text-decoration: none; font-weight: 700; font-family: inherit; font-size: 1rem; transition: color 0.2s; background: none; border: none; width: 100%; text-align: left; cursor: pointer; }
+    .mobile-menu a:hover, .mobile-menu button:hover { color: #d1d5db; }
+
+    /* Hero Section */
+    .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #000; overflow: hidden; }
+    .hero .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero .overlay { position: absolute; inset: 0; background-color: rgba(0,0,0,0.4); }
+    .hero .title { position: relative; text-align: center; padding: 0 1rem; color: #fff; text-shadow: 0 0 8px rgba(0,0,0,0.5); }
+    .hero .title h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; line-height: 1; text-shadow: 0 0 16px rgba(0,0,0,0.5); }
+    @media (min-width: 768px) { .hero .title h1 { font-size: 4rem; } }
+    @media (min-width: 1024px) { .hero .title h1 { font-size: 5rem; } }
+    .hero .title p { font-size: 1.25rem; font-family: serif; }
+    @media (min-width: 768px) { .hero .title p { font-size: 1.5rem; } }
+    @media (min-width: 1024px) { .hero .title p { font-size: 1.875rem; } }
+
+    /* Footer */
+    footer { background-color: #000; color: #fff; padding: 3rem 0; }
+    .footer-container { max-width: 1024px; margin: 0 auto; padding: 0 1rem; text-align: center; }
+    .footer-container p { color: #9ca3af; font-size: 0.875rem; font-weight: 300; }
+
+    /* Modal */
+    #modal-overlay { display: none; position: fixed; inset: 0; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1001; }
+    .modal { background-color: #fff; padding: 2rem; border-radius: 0.5rem; max-width: 24rem; width: 100%; margin: 1rem; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .modal-header h3 { font-size: 1.25rem; font-weight: 600; color: #000; }
+    .modal-header button { background: none; border: none; cursor: pointer; }
+    .modal-content { text-align: center; }
+    .modal-content a { display: inline-flex; align-items: center; gap: 0.5rem; color: #000; text-decoration: none; font-size: 1.125rem; transition: color 0.2s; }
+    .modal-content a svg, .modal-content a i { width: 1.5rem; height: 1.5rem; }
+    .modal-content a:hover { color: #4b5563; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <i data-lucide="brain"></i>
+        <span>Nebulier</span>
+      </div>
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#research">Research</a>
+        <button id="contact-button-desktop">Contact</button>
+      </nav>
+      <button class="hamburger" id="menu-button">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#home">Home</a>
+      <a href="#research">Research</a>
+      <button id="contact-button-mobile">Contact</button>
+      <button id="menu-close" style="padding:0.75rem 1rem;">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="hero" id="home">
+    <img src="assets/img-neb.png" alt="Nebulier" class="bg" />
+    <div class="overlay"></div>
+    <div class="title">
+      <h1>Nebulier Research</h1>
+      <p>Independent Research Initiative</p>
+    </div>
+  </main>
+
+  <div id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Contact</h3>
+        <button id="modal-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-content">
+        <a href="mailto:tejwardhan.patil@nebulier.com">
+          <i data-lucide="mail"></i>
+          <span>tejwardhan.patil@nebulier.com</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <p>© 2025 Nebulier Research</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Toggle mobile menu and modal
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.getElementById('menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuClose = document.getElementById('menu-close');
+      const contactDesktop = document.getElementById('contact-button-desktop');
+      const contactMobile = document.getElementById('contact-button-mobile');
+      const modalOverlay = document.getElementById('modal-overlay');
+      const modalClose = document.getElementById('modal-close');
+
+      menuButton.addEventListener('click', () => {
+        mobileMenu.style.display = 'block';
+      });
+      menuClose.addEventListener('click', () => {
+        mobileMenu.style.display = 'none';
+      });
+
+      contactDesktop.addEventListener('click', () => {
+        modalOverlay.style.display = 'flex';
+        mobileMenu.style.display = 'none';
+      });
+      contactMobile.addEventListener('click', () => {
+        modalOverlay.style.display = 'flex';
+        mobileMenu.style.display = 'none';
+      });
+      modalClose.addEventListener('click', () => {
+        modalOverlay.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
